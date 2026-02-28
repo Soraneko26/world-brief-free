@@ -1,12 +1,13 @@
-# Daily World Brief
+﻿# Daily World Brief
 
-- generated_at: 2026-02-28T15:26:28.760915+00:00
-- total_events: 0
+- generated_at: 2026-02-28T00:00:00+00:00
+- total_events: 1
 
 ## Categories
+- demo: 1
 
 ## Latest 15
+- 2026-02-28T00:00:00+00:00 | manual-demo | Demo event (initial data)
 
 ## Notes
-- This report is rule-based, not an LLM summary.
-- It runs fully free on GitHub Actions + static hosting.
+- Initial placeholder data. Replace with real data via GitHub Actions.
