@@ -1,28 +1,28 @@
-{
-  "generated_at": "2026-02-28T15:26:28.760915+00:00",
-  "event_count": 0,
-  "errors": [
-    "USGS: <urlopen error [WinError 10013] アクセス許可で禁じられた方法でソケットにアクセスしようとしました。>",
-    "NASA EONET: <urlopen error [WinError 10013] アクセス許可で禁じられた方法でソケットにアクセスしようとしました。>",
-    "ReliefWeb: <urlopen error [WinError 10013] アクセス許可で禁じられた方法でソケットにアクセスしようとしました。>"
-  ],
+﻿{
+  "generated_at": "2026-02-28T00:00:00+00:00",
+  "event_count": 1,
+  "errors": [],
   "sources": [
     {
-      "name": "USGS",
-      "url": "https://earthquake.usgs.gov/"
-    },
-    {
-      "name": "NASA EONET",
-      "url": "https://eonet.gsfc.nasa.gov/"
-    },
-    {
-      "name": "ReliefWeb API",
-      "url": "https://api.reliefweb.int/"
+      "name": "manual-demo",
+      "url": "https://example.com"
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "id": "demo-1",
+      "title": "Demo event (initial data)",
+      "category": "demo",
+      "lat": 35.68,
+      "lon": 139.76,
+      "time": "2026-02-28T00:00:00+00:00",
+      "source": "manual-demo",
+      "url": "https://example.com",
+      "severity": null
+    }
+  ],
   "build": {
     "version": "0.1.0",
-    "duration_ms": 1772292388760
+    "duration_ms": 0
   }
 }

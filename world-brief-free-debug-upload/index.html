@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World Brief Debug</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:16px;background:#fafafa;color:#222}
+.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:12px;margin-bottom:12px}
+pre{white-space:pre-wrap;background:#f4f4f4;padding:10px;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="card"><h1>World Brief Debug</h1><div id="status">loading...</div></div>
+<div class="card"><h2>Events</h2><ul id="events"></ul></div>
+<div class="card"><h2>Raw JSON</h2><pre id="raw"></pre></div>
+<script>
+(async()=>{
+  const s=document.getElementById('status');
+  try{
+    const r=await fetch('./data/world.json?ts='+Date.now(),{cache:'no-store'});
+    const t=await r.text();
+    document.getElementById('raw').textContent=t || '(empty response)';
+    const j=JSON.parse(t);
+    s.textContent='OK: JSON loaded. event_count='+(j.event_count ?? 'n/a');
+    const ul=document.getElementById('events');
+    (j.events||[]).slice(0,10).forEach(e=>{const li=document.createElement('li');li.textContent=(e.time||'n/a')+' | '+(e.title||'Untitled');ul.appendChild(li)});
+    if(!(j.events||[]).length){const li=document.createElement('li');li.textContent='No events in JSON';ul.appendChild(li)}
+  }catch(err){
+    s.textContent='ERROR: '+(err?.message||err);
+  }
+})();
+</script>
+</body>
+</html>

@@ -32,7 +32,14 @@ function safeHttpUrl(raw) {
 }
 
 async function load() {
-  const data = await fetch("./data/world.json", { cache: "no-store" }).then((r) => r.json());
+  const dataResp = await fetch("./data/world.json", { cache: "no-store" });
+  const raw = await dataResp.text();
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    throw new Error("data/world.json is empty or invalid JSON");
+  }
   const briefText = await fetch("./data/daily_brief.md", { cache: "no-store" }).then((r) => r.text());
 
   document.getElementById("updatedAt").textContent = `updated: ${toDateText(data.generated_at)}`;
@@ -99,5 +106,5 @@ async function load() {
 }
 
 load().catch((err) => {
-  document.getElementById("updatedAt").textContent = `load error: ${err}`;
+  document.getElementById("updatedAt").textContent = `load error: ${err.message || err}`;
 });
