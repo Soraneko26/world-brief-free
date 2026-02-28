@@ -1,0 +1,24 @@
+ name: guard-static-only
+
+  on:
+    push:
+      branches: ["**"]
+    pull_request:
+
+  jobs:
+    check:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Ensure no Pages Functions files
+          run: |
+            set -eu
+            if [ -d "functions" ]; then echo
+  "ERROR: functions/ detected"; exit 1; fi
+            if [ -f "_worker.js" ]; then echo
+  "ERROR: _worker.js detected"; exit 1; fi
+            if [ -f "_worker.js/index.js" ]; then
+  echo "ERROR: _worker.js/index.js detected"; exit
+  1; fi
+            echo "OK: static-only confirmed."
